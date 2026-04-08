@@ -210,54 +210,130 @@ const showcaseProjects: ShowcaseProject[] = [
 const caseStudiesByProject: Record<string, CaseStudy> = {
   elevatr: {
     id: "elevatr",
-    quote:
-      "Elevatr gamifies personal growth by framing goals as peaks to summit. Habits become steps up the mountain, and progress is visualized in a clear mountain-chart interface.",
     name: "Elevatr",
     role: "Habit tracking app · Built and shipped by Sean Oldfield",
-    image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=900&auto=format&fit=crop&q=80",
-    icon: "monitor",
     metrics: [
       { value: "5", label: "Peaks to Summit", sub: "Structured goal hierarchy" },
       { value: "100%", label: "Mobile-first UI", sub: "Optimized for on-the-go tracking" },
     ],
+    rows: [
+      {
+        heading: "Overview",
+        body:
+          "Elevatr gamifies personal growth by framing goals as peaks to summit. Habits become steps up the mountain, and progress is visualized in a clear mountain-chart interface.\n\nReplace the image with your hero or primary screen when ready.",
+        image: "/images/elevatr-homepage.jpg",
+        imageAlt: "Elevatr — overview screenshot (placeholder: swap when you send assets)",
+      },
+      {
+        heading: "Problem & approach",
+        body:
+          "Traditional habit trackers can feel like flat to-do lists. Elevatr leans into a single metaphor so progress feels tangible: every check-in moves you along a ridge toward a summit.\n\nEdit this block with your real problem statement, constraints, and what you optimized for (speed, clarity, delight, etc.).",
+        image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&auto=format&fit=crop&q=80",
+        imageAlt: "Placeholder — second Elevatr screen",
+      },
+      {
+        heading: "Outcome & what I learned",
+        body:
+          "The experience reinforced how to structure hierarchical goal data and present it in a way that stays legible on small screens. Next passes could deepen analytics or social accountability.\n\nSwap this image for a detail shot, chart, or alternate flow you want highlighted.",
+        image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&auto=format&fit=crop&q=80",
+        imageAlt: "Placeholder — third Elevatr screen",
+      },
+    ],
   },
   "flow-state": {
     id: "flow-state",
-    quote:
-      "Flow-State converts uploaded lectures, documents, and videos into flashcards, notes, and quizzes using Gemini. It is designed to remove study setup friction and speed up revision.",
     name: "Flow-State",
     role: "AI study tool · Built and shipped by Sean Oldfield",
-    image: "https://images.unsplash.com/photo-1517430816045-df4b7de11d1d?w=900&auto=format&fit=crop&q=80",
-    icon: "dashboard",
     metrics: [
       { value: "3", label: "Content Types", sub: "Notes, flashcards, quizzes" },
       { value: "0", label: "Setup Required", sub: "Upload and go" },
     ],
+    rows: [
+      {
+        heading: "Overview",
+        body:
+          "Flow-State converts uploaded lectures, documents, and videos into flashcards, notes, and quizzes using Gemini. It is designed to remove study setup friction and speed up revision.\n\nReplace images below with your real uploads, generator UI, and results views.",
+        image: "/images/flow-state-homepage.jpg",
+        imageAlt: "Flow-State homepage",
+      },
+      {
+        heading: "How it works",
+        body:
+          "Users bring raw material; the app structures outputs into study-ready formats. The focus is on predictable layout, fast feedback, and keeping the pipeline from upload to usable cards as short as possible.\n\nEdit this section with your actual flows, API behavior, and any rate limits or safety measures you added.",
+        image: "/images/flow-state-login.jpg",
+        imageAlt: "Flow-State — secondary screen",
+      },
+      {
+        heading: "Reflection",
+        body:
+          "Building with Gemini highlighted prompt consistency, error handling around partial responses, and UI that makes failures feel recoverable.\n\nAdd your metrics, testimonials, or a before/after story here when you have them.",
+        image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1200&auto=format&fit=crop&q=80",
+        imageAlt: "Placeholder — third Flow-State screen",
+      },
+    ],
   },
   waveform: {
     id: "waveform",
-    quote:
-      "Waveform focuses on fast music discovery through genre browsing and search. The UI is intentionally minimal and mobile-first for a smooth, app-like listening flow.",
     name: "Waveform",
     role: "Music discovery app · Built and shipped by Sean Oldfield",
-    image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=900&auto=format&fit=crop&q=80",
-    icon: "users",
     metrics: [
       { value: "9", label: "Genres", sub: "Pop, Hip-Hop, Lo-fi, Rock, and more" },
       { value: "5", label: "Nav Sections", sub: "Home, Search, Library, Liked, Settings" },
     ],
+    rows: [
+      {
+        heading: "Overview",
+        body:
+          "Waveform focuses on fast music discovery through genre browsing and search. The UI is intentionally minimal and mobile-first for a smooth, app-like listening flow.\n\nSwap the screenshot for your preferred device frame or marketing shot.",
+        image: "/images/waveform-homepage.jpg",
+        imageAlt: "Waveform homepage",
+      },
+      {
+        heading: "Interaction model",
+        body:
+          "The app prioritizes low-friction navigation between discovery, search, and library areas without heavy chrome. That meant obsessing over tap targets, scroll behavior, and state that stays consistent across tabs.\n\nReplace copy with your real product decisions and tradeoffs.",
+        image: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=1200&auto=format&fit=crop&q=80",
+        imageAlt: "Placeholder — Waveform secondary view",
+      },
+      {
+        heading: "What’s next",
+        body:
+          "Future iterations could add personalization, offline caching, or richer metadata — whatever matches how you want listeners to explore.\n\nThird image slot is ready for your detailed UI or feature highlight.",
+        image: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=1200&auto=format&fit=crop&q=80",
+        imageAlt: "Placeholder — third Waveform screen",
+      },
+    ],
   },
   ptrn: {
     id: "ptrn",
-    quote:
-      "Ptrn organizes habits into Morning, Afternoon, and Evening blocks with clear visual grouping. The design keeps routine planning simple while still feeling energetic and motivating.",
     name: "Ptrn",
     role: "Habit routine app · Built and shipped by Sean Oldfield",
-    image: "https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=900&auto=format&fit=crop&q=80",
-    icon: "monitor",
     metrics: [
       { value: "3", label: "Time Blocks", sub: "Morning, Afternoon, Evening" },
       { value: "6", label: "Default Habits", sub: "Fully customizable" },
+    ],
+    rows: [
+      {
+        heading: "Overview",
+        body:
+          "Ptrn organizes habits into Morning, Afternoon, and Evening blocks with clear visual grouping. The design keeps routine planning simple while still feeling energetic and motivating.\n\nUse your best homepage or dashboard shot in place of the default image.",
+        image: "/images/ptrn-homepage.jpg",
+        imageAlt: "Ptrn homepage",
+      },
+      {
+        heading: "Design rationale",
+        body:
+          "Time blocks use color and spacing so scanning the day is instant. Emoji and progress cues reward completion without adding noise.\n\nCustomize this paragraph with your typography, palette, and accessibility choices.",
+        image: "https://images.unsplash.com/photo-1506784983877-45594efa4cbe?w=1200&auto=format&fit=crop&q=80",
+        imageAlt: "Placeholder — Ptrn habit list",
+      },
+      {
+        heading: "Takeaways",
+        body:
+          "The build sharpened component-level state for multi-group lists and clarified how much structure to expose on first launch versus progressive disclosure.\n\nDrop in a third screenshot when you’re ready — onboarding, settings, or stats all work well here.",
+        image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=1200&auto=format&fit=crop&q=80",
+        imageAlt: "Placeholder — third Ptrn screen",
+      },
     ],
   },
 };
@@ -342,8 +418,8 @@ export default function PortfolioPage() {
   return (
     <div className="dark">
       <div className="min-h-screen bg-background text-foreground">
-        {/* Hero Section */}
-        <section className="relative min-h-screen flex flex-col items-center justify-center px-6 py-20 overflow-hidden">
+        {/* Hero Section — solid black base so nothing lighter shows through seams */}
+        <section className="relative min-h-screen flex flex-col items-center justify-center px-6 py-20 overflow-hidden bg-black">
           <WebGLShader />
           <div className="absolute inset-0 bg-black/35 pointer-events-none" />
 
@@ -373,10 +449,13 @@ export default function PortfolioPage() {
           </div>
         </section>
 
+        {/* Blend hero black into page background — tall multi-stop gradient (see globals.css) */}
+        <div className="pointer-events-none w-full hero-to-page-blend" aria-hidden />
+
         {/* Projects Gallery Section — height scales with item count so every card fully rotates into view */}
-        <section ref={galleryRef}>
+        <section ref={galleryRef} className="bg-background">
         <div className="w-full" style={{ height: `${(projectData.length + 6) * 100}vh` }}>
-          <div className="w-full h-screen sticky top-0 flex flex-col items-center justify-center overflow-hidden">
+          <div className="gallery-sticky-backdrop w-full h-screen sticky top-0 flex flex-col items-center justify-center overflow-hidden">
             {/* Section Header */}
             <div className="text-center mb-8 absolute top-12 md:top-16 z-10 px-6">
               <h2 className="text-3xl md:text-4xl font-bold text-foreground">

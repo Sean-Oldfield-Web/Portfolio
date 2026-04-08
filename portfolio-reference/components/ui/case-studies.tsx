@@ -2,34 +2,53 @@
 
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
-import { Monitor, LayoutDashboard, Users } from "lucide-react";
 
 const CountUp = dynamic(() => import("react-countup"), { ssr: false });
 
-export type CaseStudy = {
-  id: string;
-  quote: string;
-  name: string;
-  role: string;
+export type CaseStudyRow = {
+  heading: string;
+  body: string;
   image: string;
-  icon?: "monitor" | "dashboard" | "users";
-  metrics: { value: string; label: string; sub?: string }[];
+  imageAlt?: string;
 };
 
-const defaultStudies: CaseStudy[] = [
-  {
-    id: "elevatr",
-    quote: "Placeholder quote for project outcome. Replace this with your real project write-up.",
-    name: "Project Placeholder",
-    role: "Your role goes here",
-    image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=900&auto=format&fit=crop&q=80",
-    icon: "monitor",
-    metrics: [
-      { value: "40%", label: "Placeholder Metric", sub: "Replace with real number" },
-      { value: "95%", label: "Placeholder Metric", sub: "Replace with real number" },
-    ],
-  },
-];
+export type CaseStudy = {
+  id: string;
+  name: string;
+  role: string;
+  metrics: { value: string; label: string; sub?: string }[];
+  rows: CaseStudyRow[];
+};
+
+const defaultStudy: CaseStudy = {
+  id: "placeholder",
+  name: "Project",
+  role: "Your role — edit in page.tsx",
+  metrics: [
+    { value: "0", label: "Metric", sub: "Edit me" },
+    { value: "0", label: "Metric", sub: "Edit me" },
+  ],
+  rows: [
+    {
+      heading: "Row 1 — edit heading",
+      body: "Replace this paragraph with your own copy. You can describe the problem, the brief, or the first milestone. Add more detail here so the section feels substantial when you scroll.",
+      image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=900&auto=format&fit=crop&q=80",
+      imageAlt: "Placeholder screenshot 1",
+    },
+    {
+      heading: "Row 2 — edit heading",
+      body: "Second block of text for the middle row. Swap the image to the other side on desktop. Mention process, constraints, or what you iterated on.",
+      image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=900&auto=format&fit=crop&q=80",
+      imageAlt: "Placeholder screenshot 2",
+    },
+    {
+      heading: "Row 3 — edit heading",
+      body: "Third row: outcomes, learnings, or what you would do next. Replace images and copy when you send final assets.",
+      image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=900&auto=format&fit=crop&q=80",
+      imageAlt: "Placeholder screenshot 3",
+    },
+  ],
+};
 
 function usePrefersReducedMotion() {
   const [reduced, setReduced] = useState(false);
@@ -75,74 +94,62 @@ function MetricStat({ value, label, sub, duration = 1.6 }: { value: string; labe
   );
 }
 
-function getIcon(icon: CaseStudy["icon"]) {
-  if (icon === "dashboard") return LayoutDashboard;
-  if (icon === "users") return Users;
-  return Monitor;
-}
-
 export default function CaseStudies({
-  studies = defaultStudies,
+  studies = [defaultStudy],
   title = "Project Details",
-  subtitle = "Click a project to open all relevant info.",
+  subtitle = "Three highlights — swap images and copy below when you have finals.",
 }: {
   studies?: CaseStudy[];
   title?: string;
   subtitle?: string;
 }) {
+  const study = studies[0];
+
   return (
     <section className="py-20 bg-background" aria-labelledby="case-studies-heading">
-      <div className="container mx-auto px-6">
-        <div className="flex flex-col gap-4 text-center max-w-2xl mx-auto">
+      <div className="container mx-auto px-6 max-w-5xl">
+        <div className="flex flex-col gap-4 text-center max-w-2xl mx-auto mb-14">
           <h2 id="case-studies-heading" className="text-4xl font-semibold md:text-5xl text-foreground">
             {title}
           </h2>
-          <p className="text-muted-foreground">{subtitle}</p>
+          <p className="text-muted-foreground leading-relaxed">{subtitle}</p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-2 text-sm text-muted-foreground">
+            <span className="font-medium text-foreground">{study.name}</span>
+            <span className="hidden sm:inline text-zinc-600">·</span>
+            <span>{study.role}</span>
+          </div>
         </div>
 
-        <div className="mt-16 flex flex-col gap-16">
-          {studies.map((study, idx) => {
-            const reversed = idx % 2 === 1;
-            const Icon = getIcon(study.icon);
+        <div className="flex flex-col gap-20 md:gap-24">
+          {study.rows.map((row, index) => {
+            const imageFirst = index % 2 === 0;
             return (
               <div
-                key={study.id}
-                className="grid gap-10 lg:grid-cols-3 xl:gap-16 items-center border-b border-gray-200 dark:border-gray-800 pb-12"
+                key={`${study.id}-row-${index}`}
+                className={`flex flex-col gap-8 md:gap-12 md:flex-row md:items-center ${
+                  imageFirst ? "" : "md:flex-row-reverse"
+                }`}
               >
-                <div
-                  className={[
-                    "flex flex-col sm:flex-row gap-8 lg:col-span-2 lg:border-r lg:pr-12 text-left",
-                    reversed ? "lg:order-2 lg:border-r-0 lg:border-l border-gray-200 dark:border-gray-800 lg:pl-12 lg:pr-0" : "",
-                  ].join(" ")}
-                >
-                  <img src={study.image} alt={`${study.name} project preview`} className="aspect-[29/35] h-auto w-full max-w-60 rounded-2xl object-cover ring-1 ring-border" />
-                  <figure className="flex flex-col justify-between gap-6 text-left">
-                    <blockquote className="text-lg text-foreground leading-relaxed text-left">
-                      <h3 className="text-lg font-normal text-gray-900 dark:text-white leading-relaxed text-left">
-                        <span className="inline-flex items-center gap-2">
-                          <Icon className="h-5 w-5 text-zinc-400" />
-                          Relevant Case Study
-                        </span>
-                        <span className="block text-gray-500 dark:text-gray-400 text-sm sm:text-base mt-3">
-                          {study.quote}
-                        </span>
-                      </h3>
-                    </blockquote>
-                    <figcaption className="flex flex-col gap-1 mt-4 text-left">
-                      <span className="text-md font-medium text-foreground">{study.name}</span>
-                      <span className="text-sm text-muted-foreground">{study.role}</span>
-                    </figcaption>
-                  </figure>
+                <div className="w-full md:w-1/2 shrink-0">
+                  <img
+                    src={row.image}
+                    alt={row.imageAlt ?? `${study.name} — ${row.heading}`}
+                    className="w-full rounded-2xl object-cover aspect-[4/3] ring-1 ring-border shadow-2xl"
+                  />
                 </div>
-
-                <div className={["grid grid-cols-1 gap-4 self-center text-left", reversed ? "lg:order-1" : ""].join(" ")}>
-                  {study.metrics.map((metric, i) => (
-                    <MetricStat key={`${study.id}-${i}`} value={metric.value} label={metric.label} sub={metric.sub} />
-                  ))}
+                <div className="w-full md:w-1/2 flex flex-col gap-4 text-left">
+                  <h3 className="text-2xl font-semibold text-foreground tracking-tight">{row.heading}</h3>
+                  <p className="text-base md:text-lg text-muted-foreground leading-relaxed whitespace-pre-line">{row.body}</p>
                 </div>
               </div>
             );
           })}
+        </div>
+
+        <div className="mt-20 grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-3xl mx-auto">
+          {study.metrics.map((metric, i) => (
+            <MetricStat key={`${study.id}-metric-${i}`} value={metric.value} label={metric.label} sub={metric.sub} />
+          ))}
         </div>
       </div>
     </section>
