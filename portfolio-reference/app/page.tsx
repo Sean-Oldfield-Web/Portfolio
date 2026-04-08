@@ -449,13 +449,10 @@ export default function PortfolioPage() {
           </div>
         </section>
 
-        {/* Blend hero black into page background — tall multi-stop gradient (see globals.css) */}
-        <div className="pointer-events-none w-full hero-to-page-blend" aria-hidden />
-
         {/* Projects Gallery Section — height scales with item count so every card fully rotates into view */}
         <section ref={galleryRef} className="bg-background">
         <div className="w-full" style={{ height: `${(projectData.length + 6) * 100}vh` }}>
-          <div className="gallery-sticky-backdrop w-full h-screen sticky top-0 flex flex-col items-center justify-center overflow-hidden">
+          <div className="w-full h-screen sticky top-0 flex flex-col items-center justify-center overflow-hidden bg-background">
             {/* Section Header */}
             <div className="text-center mb-8 absolute top-12 md:top-16 z-10 px-6">
               <h2 className="text-3xl md:text-4xl font-bold text-foreground">

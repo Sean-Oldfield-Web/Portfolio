@@ -128,33 +128,3 @@
     @apply bg-background text-foreground;
   }
 }
-
-/* Long, multi-stop blend from shader black (#000) into theme --background (no hard horizontal line) */
-.dark .hero-to-page-blend {
-  height: clamp(260px, 42vh, 560px);
-  margin-top: -1px;
-  background: linear-gradient(
-    to bottom,
-    #000000 0%,
-    #030303 8%,
-    #070708 18%,
-    color-mix(in oklch, var(--background) 18%, #000000) 32%,
-    color-mix(in oklch, var(--background) 42%, #000000) 48%,
-    color-mix(in oklch, var(--background) 72%, #000000) 64%,
-    color-mix(in oklch, var(--background) 92%, #000000) 82%,
-    var(--background) 94%,
-    var(--background) 100%
-  );
-}
-
-/* Ferris-wheel viewport: continues the blend so the seam with the strip above stays soft */
-.dark .gallery-sticky-backdrop {
-  background: linear-gradient(
-    to bottom,
-    #000000 0%,
-    color-mix(in oklch, var(--background) 25%, #000000) 28%,
-    color-mix(in oklch, var(--background) 55%, #000000) 52%,
-    var(--background) 78%,
-    var(--background) 100%
-  );
-}
